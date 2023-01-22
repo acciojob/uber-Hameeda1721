@@ -1,58 +1,51 @@
 package com.driver.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Drivers")
-public class Driver{
-
+@Table
+public class Driver {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int driverId;
-
-    private String Mobile;
-
-    private String passWord;
-
-    @OneToOne(mappedBy = "driver",cascade = CascadeType.ALL)
+    private  String mobile;
+    private String password;
+    @OneToOne(mappedBy = "driver" , cascade = CascadeType.ALL)
     private Cab cab;
-
-
-    @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
-    private List<TripBooking> tripBookingList;
-
-
-    public Driver(String mobile, String password) {
-        this.Mobile = mobile;
-        this.passWord = password;
-    }
-
+    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
+    private List<TripBooking> tripBookings = new ArrayList<>();
     public Driver() {
     }
 
-    public int getDriverId() {
-        return driverId;
+    public Driver(String mobile, String password) {
+        this.mobile = mobile;
+        this.password = password;
     }
 
-    public void setDriverId(int driverId) {
-        this.driverId = driverId;
+    public List<TripBooking> getTripBookings() {
+        return tripBookings;
+    }
+
+    public void setTripBookings(List<TripBooking> tripBookings) {
+        this.tripBookings = tripBookings;
     }
 
     public String getMobile() {
-        return Mobile;
+        return mobile;
     }
 
     public void setMobile(String mobile) {
-        this.Mobile = mobile;
+        this.mobile = mobile;
     }
 
     public String getPassword() {
-        return passWord;
+        return password;
     }
 
     public void setPassword(String password) {
-        this.passWord = password;
+        this.password = password;
     }
 
     public Cab getCab() {
@@ -63,11 +56,11 @@ public class Driver{
         this.cab = cab;
     }
 
-    public List<TripBooking> getTripBookingList() {
-        return tripBookingList;
+    public int getDriverId() {
+        return driverId;
     }
 
-    public void setTripBookingList(List<TripBooking> tripBookingList) {
-        this.tripBookingList = tripBookingList;
+    public void setDriverId(int driverId) {
+        this.driverId = driverId;
     }
 }

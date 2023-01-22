@@ -10,7 +10,7 @@ import com.driver.model.Driver;
 import com.driver.repository.DriverRepository;
 
 @Service
-public abstract class DriverServiceImpl implements DriverService {
+public class DriverServiceImpl implements DriverService {
 
 	@Autowired
 	DriverRepository driverRepository3;
@@ -20,31 +20,27 @@ public abstract class DriverServiceImpl implements DriverService {
 
 	@Override
 	public void register(String mobile, String password){
-		Cab cab=new Cab(10,true);
-		Driver driver=new Driver(mobile,password);
 
+		Driver driver= new Driver(mobile,password);
+		Cab cab = new Cab(10, true);
 		cab.setDriver(driver);
-		driver.setCab(cab);
-
 		driverRepository3.save(driver);
-
 	}
 
 	@Override
 	public void removeDriver(int driverId){
-		Driver driver=driverRepository3.findById(driverId).get();
-		driverRepository3.delete(driver);
 
+		Driver driver = driverRepository3.findById(driverId).get();
+		driverRepository3.delete(driver);
 
 	}
 
 	@Override
 	public void updateStatus(int driverId){
-		Driver driver=driverRepository3.findById(driverId).get();
-		Cab cab=driver.getCab();
+
+		Driver driver = driverRepository3.findById(driverId).get();
+		Cab cab = driver.getCab();
 		cab.setAvailable(false);
-
 		driverRepository3.save(driver);
-
 	}
 }
