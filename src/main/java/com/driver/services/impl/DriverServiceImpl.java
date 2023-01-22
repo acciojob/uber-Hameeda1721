@@ -10,7 +10,7 @@ import com.driver.model.Driver;
 import com.driver.repository.DriverRepository;
 
 @Service
-public class DriverServiceImpl implements DriverService {
+public abstract class DriverServiceImpl implements DriverService {
 
 	@Autowired
 	DriverRepository driverRepository3;

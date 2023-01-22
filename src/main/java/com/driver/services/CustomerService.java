@@ -20,5 +20,5 @@ public interface CustomerService {
 
 	public void completeTrip(Integer tripId);
 
-    void registerCustomer(Customer customer);
+	void registerCustomer(Customer customer);
 }
